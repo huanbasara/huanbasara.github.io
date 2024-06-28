@@ -23,7 +23,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-baseurl: "/jekyll-theme-horizon-flow" # the subpath of your site, e.g. /blog
+baseurl: "/i-am-gary" # the subpath of your site, e.g. /blog
 url: "https://papierkorp.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
@@ -90,26 +90,18 @@ footer_sidebar:
     enabled: true
 
 footer_links:
-  - title: Feed
-    url: /feed.xml
-    icon: fa fa-rss
   - title: GitHub
-    url: https://github.com/papierkorp
+    url: https://github.com/huanbasara
     icon: fa fa-github
   - title: Email
-    url: mailto:xxx@test.de
+    url: huanbasara@gmail.com
     icon: fa fa-envelope
   - title: Twitter
-    url: https://twitter.com
+    url: https://x.com/stridehuan
     icon: fa fa-twitter
-  - title: Facebook
-    url: https://facebook.com
-    icon: fa fa-facebook
   - title: Instagram
-    url: https://instagram.com
+    url: https://instagram.com/helloitshuan
     icon: fa fa-instagram
-  - title: Impressum
-    url: /impressum.html
 
 defaults:
   -
