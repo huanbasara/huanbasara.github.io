@@ -1,26 +1,56 @@
 <!DOCTYPE html>
-<!--
-    Horizon Flow Theme 0.0.1
-    Copyright 2023 Markus Schiller - https://papierkorp.github.io/
-    Free for personal and commercial use under the MIT license
-    https://github.com/papierkorp/jekyll-theme-horizon-flow/blob/main/LICENSE.txt
--->
-<html>
-    <head lang="{{ site.locale | default: "en" }}">
-        {% seo %}
-        {% feed_meta %}
-        <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
-        <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
-        <link rel="canonical" href="{{ page.url | replace:'index.html', '' | absolute_url }}{{ site.baseurl }}">
-    </head>
+<html lang="en">
 
-    <body>
-        <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
-        {% include header.html %}
+{% include structure/head.html %}
 
-        {{ content }}
+<body>
 
-        {% include footer.html %}
-    </body>
+{% include bars/nav.html %}
+
+{% capture col1 %}{% if page.narrow %}3{% else %}4{% endif %}{% endcapture %}
+
+{% capture col2 %}{% if page.narrow %}9{% else %}8{% endif %}{% endcapture %}
+
+<div class="container site-container" id="top">
+    <div class="row">
+        <div class="d-none d-lg-block col-lg-4 col-xl-{{ col1 }} side">
+            {% include bars/side.html %}
+        </div>
+        <div class="col-md-12 col-lg-8 col-xl-{{ col2 }} pb-4 content">
+            {{ content }}
+        </div>
+        <div class="col-md-12 d-lg-none bottom">
+            {% include bars/bottom.html %}
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+/*!
+ * IE10 viewport hack for Surface/desktop Windows 8 bug
+ * Copyright 2014-2017 The Bootstrap Authors
+ * Copyright 2014-2017 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+// See the Getting Started docs for more information:
+// https://getbootstrap.com/getting-started/#support-ie10-width
+
+(function () {
+    'use strict'
+
+    if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+        var msViewportStyle = document.createElement('style')
+        msViewportStyle.appendChild(
+            document.createTextNode(
+                '@-ms-viewport{width:auto!important}'
+            )
+        )
+        document.head.appendChild(msViewportStyle)
+    }
+}())
+</script>
+
+</body>
 
 </html>
