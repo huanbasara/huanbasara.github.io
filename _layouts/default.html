@@ -1,56 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
-{% include structure/head.html %}
-
-<body>
-
-{% include bars/nav.html %}
-
-{% capture col1 %}{% if page.narrow %}3{% else %}4{% endif %}{% endcapture %}
-
-{% capture col2 %}{% if page.narrow %}9{% else %}8{% endif %}{% endcapture %}
-
-<div class="container site-container" id="top">
-    <div class="row">
-        <div class="d-none d-lg-block col-lg-4 col-xl-{{ col1 }} side">
-            {% include bars/side.html %}
+    <head>
+        {% include head.html %}
+        <link rel="stylesheet" href="{{ '/assets/css/404.css' | prepend: site.baseurl }}">
+    </head>
+    <body>
+        <div class="blank-page">
+        <a href="{{ '/' | prepend: site.baseurl }}" class="go-home">↩️ GO HOME</a>
+        <div class="not-found-msg">
+            <h1 class="sour-face">`Φ ⌒ `Φ ?</h1>
+            <p style="font-size:1.75rem; color:#fa4251;">404: Page not found</p>
+            <p style="font-size:1.25rem;">D-Data breach...? &nbsp&nbsp No such thing allowed!</p>
         </div>
-        <div class="col-md-12 col-lg-8 col-xl-{{ col2 }} pb-4 content">
-            {{ content }}
         </div>
-        <div class="col-md-12 d-lg-none bottom">
-            {% include bars/bottom.html %}
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript">
-/*!
- * IE10 viewport hack for Surface/desktop Windows 8 bug
- * Copyright 2014-2017 The Bootstrap Authors
- * Copyright 2014-2017 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-
-// See the Getting Started docs for more information:
-// https://getbootstrap.com/getting-started/#support-ie10-width
-
-(function () {
-    'use strict'
-
-    if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-        var msViewportStyle = document.createElement('style')
-        msViewportStyle.appendChild(
-            document.createTextNode(
-                '@-ms-viewport{width:auto!important}'
-            )
-        )
-        document.head.appendChild(msViewportStyle)
-    }
-}())
-</script>
-
-</body>
-
+    </body>
+    <script src="{{ '/assets/js/404.js' | prepend: site.baseurl }}"></script>
 </html>

@@ -1,74 +1,53 @@
-# Outputting
-permalink: /:categories/:year/:month/:day/:title.html
+title: example.com
+description: "Satellite - jekyll blog theme"
+logo_img: "/assets/img/favicon.webp"
+profile_img: "/assets/img/profile.webp"
 
-# Conversion
-markdown:         kramdown
-highlighter:      rouge
-excerpt_separator: <!--more-->
+# Social Links
+email: example@gmail.com
+github_username: github
+twitter_username: twitter
+instagram_username: instagram
+linkedin_username: linkedin
+facebook_username: facebook
 
-# Config for your profile.
-title:            Friday Theme            # Site title
-name:             Friday Theme            # Your name
-avatar:           /theme/img/avatar.jpg   # Path to an avatar image
+# External API
+giscus_repo: "byanko55/jekyll-theme-satellite"
+giscus_repoId: "R_kgDOJ6fqWg"
+giscus_category: "Q&A"
+giscus_categoryId: "DIC_kwDOJ6fqWs4Cc7p7"
+goatcounter_code: byanko77
+google_analytics:
 
-# The theme uses the baseurl throughout, which is useful for running the entire
-# site under a subdir, like for this GitHub Pages deployment as a project site.
-# Use "" when runnign the site out of the root of a domain.
-baseurl: "/i-am-gary"
+# If your repo name follows the format "<user-name>.github.io", then leave the below blank.
+# Otherwise, set its value as "/<repo-name>". ex) baseurl: /myblog
+baseurl:
 
-# Add a directory to hold misc pages, just to keep the root directory clean.
-include: ["_pages", "_portfolio"]
+# Build settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-loading-lazy
 
-# Wire in the SASS files in the theme directory.
-sass:
-  sass_dir: theme/_sass
-  style: compressed
+exclude:
+  - docs/
 
-# Turn the projects into a collection.
 collections:
-  projects:
+  pages:
     output: true
-    title: Projects
-    permalink: /:collection/:name.html
-  portfolio:
-    output: true
-    title: portfolio
-    permalink: /:collection/:name.html
+    permalink: /:path.html
 
 defaults:
-# Turn the profile sidebar on for all pages by default, except for the
-# collections, where it is off and replaced by useful things on the sidebar.
-# To override this one a page, use
-#    show_profile: false
-# to hide the profile.
   -
     scope:
       path: ""
+      type: "pages"
     values:
-      show_profile: true
-  -
-    scope:
-      path: "_posts"
-    values:
-      show_profile: false
-      layout: defaults/post
-  -
-    scope:
-      path: "_portfolio"
-    values:
-      show_profile: false
-      layout: defaults/portfolio
-  -
-    scope:
-      path: "_projects"
-    values:
-      show_profile: false
-      layout: defaults/project
-  -
-    scope:
-      path: "list"
-    values:
-      show_profile: false
-      layout: defaults/list
+      layout: "page"
+      date: "1900-01-01"
 
-
+# Markdown newline activator 
+kramdown:
+  input: GFM
+  hard_wrap: true
