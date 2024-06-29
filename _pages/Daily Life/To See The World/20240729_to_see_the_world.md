@@ -18,7 +18,7 @@ bookmark: true
 
 ## 发量饱满的程序员
    
-   <img src="/assets/img/thumbnail/daily_life/20240629_gary.jpg" style="width: 400px;float: right;margin-left: 50px;margin-top: 40px"/>
+   <img src="/assets/img/thumbnail/daily_life/20240629_gary.jpg" style="width: 380px;float: right;margin-left: 50px;margin-top: 40px"/>
    我大学读的是非计算机专业。后来在读研期间发现自己还是对软件开发感兴趣，那个时候正是互联网蓬勃发展的年代，我觉得程序员这个职业很酷，能够做很多有意思的事情。
    
    毕业后待过三个公司，主要是做后端开发，技术栈以JAVA为主，但C++和python也有接触。除了做后端业务系统外，也做过中间件和数据库内核。虽然工作比较努力，但一直算是比较平庸，并没有做出过特别惊艳的事情。直到今天变成了一个发量饱满的中年程序员。👉
