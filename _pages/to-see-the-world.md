@@ -4,7 +4,7 @@ tags:
     - immigration
     - nz
     - new zealand
-date: "2024-06-29 19:18"
+date: "2024-06-29"
 thumbnail: "/assets/img/thumbnail/daily_life/20240629_walter_mitty.jpg"
 bookmark: true
 ---
