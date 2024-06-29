@@ -40,7 +40,8 @@ bookmark: true
 
 ## 像Walter一样做一个丰富的人
    想到做这个博客是几天前的事，刚好来到新西兰一周，我觉得接下去会有很多值得纪念的事情。我想到了电影《白日梦想家》（The Secret Life of Walter Mitty）里Walter有一个旅行笔记本，所以我想我也应该有我自己的。
-   <iframe src="https://www.youtube.com/embed/QwSdCylH9nU" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height=260px width=400px style="float: right;margin-left: 50px;"> </iframe>
+
+[//]: # (   <iframe src="https://www.youtube.com/embed/QwSdCylH9nU" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height=260px width=400px style="float: right;margin-left: 50px;"> </iframe>)
    喜欢电影里LIFE杂志的座右铭：
    To see the world,
    things dangerous to come to,
