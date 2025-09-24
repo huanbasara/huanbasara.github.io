@@ -2,6 +2,7 @@
 title: "Check These Out Sarah!!!"
 date: "2024-09-24"
 layout: standalone
+thumbnail: "/assets/img/thumbnail/standalone/SpiderManIntoTheSpiderVerse.jpg"
 ---
 
 # Check These Out Sarah!!! 🎬✨
