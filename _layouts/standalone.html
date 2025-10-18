@@ -214,6 +214,151 @@
             margin: 15px 0 !important;
         }
         
+        /* Mobile-friendly movie carousel */
+        .movie-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding: 20px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .movie-card {
+            flex: 0 0 280px;
+            scroll-snap-align: start;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .movie-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .dark-theme .movie-card {
+            background: #2a2a2a;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .movie-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .movie-card-content {
+            padding: 15px;
+        }
+        
+        .movie-card h3 {
+            margin: 0 0 8px 0 !important;
+            font-size: 1.2em;
+        }
+        
+        .movie-card p {
+            margin: 0 !important;
+            font-size: 0.9em;
+            color: #666;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .dark-theme .movie-card p {
+            color: #ccc;
+        }
+        
+        /* Movie detail modal */
+        .movie-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .movie-modal-content {
+            background: #fff;
+            margin: 20px;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 20px auto;
+            position: relative;
+        }
+        
+        .dark-theme .movie-modal-content {
+            background: #2a2a2a;
+        }
+        
+        .movie-modal-header {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .movie-modal-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .movie-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .movie-modal-body {
+            padding: 20px;
+        }
+        
+        .movie-modal h2 {
+            margin-top: 0 !important;
+            margin-bottom: 10px !important;
+        }
+        
+        .movie-modal .video-container {
+            margin: 15px 0;
+        }
+        
+        /* Hide original content on mobile, show carousel */
+        @media (max-width: 768px) {
+            .original-content {
+                display: none;
+            }
+            .mobile-carousel {
+                display: block;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .original-content {
+                display: block;
+            }
+            .mobile-carousel {
+                display: none;
+            }
+        }
+        
         /* Modal styles for enlarged image */
         .image-modal {
             display: none;
@@ -390,7 +535,145 @@
                 // Remove click functionality - images stay at 300px width
                 img.style.cursor = 'default';
             });
+            
+            // Initialize mobile carousel functionality
+            initMobileCarousel();
         });
+        
+        function initMobileCarousel() {
+            // Movie data
+            const movies = [
+                {
+                    title: "🥋 Born a Champion",
+                    image: "/assets/img/thumbnail/standalone/BornAChampion.jpg",
+                    description: "Mickey Kelley, one of the first American black belts in Brazilian jiu-jitsu, gets pulled away from everything he loves and into an unsanctioned MMA tournament.",
+                    highlight: "BJJ movie! 🥋🔥",
+                    video: "https://www.youtube.com/embed/CqXcwOHVUBI",
+                    color: "#ff6b6b"
+                },
+                {
+                    title: "🌌 What If...? (Season 1)",
+                    image: "/assets/img/thumbnail/standalone/WhatIfSeason1.jpg",
+                    description: "Exploring pivotal moments from the Marvel Cinematic Universe and turning them on their head, leading the audience into uncharted territory.",
+                    highlight: "Marvel multiverse exploration! 🌟✨",
+                    video: "https://www.youtube.com/embed/x9D0uUKJ5KI",
+                    color: "#9c27b0"
+                },
+                {
+                    title: "👽 Alien: Romulus",
+                    image: "/assets/img/thumbnail/standalone/AlienRomulus.jpg",
+                    description: "While scavenging the deep ends of a derelict space station, a group of young space colonists come face to face with the most terrifying life form in the universe.",
+                    highlight: "Terrifying space horror! 👽🚀",
+                    video: "https://www.youtube.com/embed/OzY2r2JXsDM",
+                    color: "#e53e3e"
+                },
+                {
+                    title: "🕷️ Spider-Man: Into the Spider-Verse",
+                    image: "/assets/img/thumbnail/standalone/SpiderManIntoTheSpiderVerse.jpg",
+                    description: "An animated superhero film that follows Miles Morales as he becomes Spider-Man in his own dimension.",
+                    highlight: "I love superhero movies! 🦸‍♂️💥",
+                    video: "https://www.youtube.com/embed/g4Hbz2jLxvQ",
+                    color: "#4ecdc4"
+                },
+                {
+                    title: "⚔️ Rurouni Kenshin Part I: Origins",
+                    image: "/assets/img/thumbnail/standalone/RurouniKenshinOrigins.jpg",
+                    description: "A former assassin who has resolved to never kill again has his vow sorely tested.",
+                    highlight: "Amazing Action Movie With Super Fancy Movements! ⚔️🔥",
+                    video: "https://www.youtube.com/embed/SZCAIAvQeAM",
+                    color: "#ffa726"
+                },
+                {
+                    title: "🐉 How to Train Your Dragon",
+                    image: "/assets/img/thumbnail/standalone/HowToTrainYourDragon.jpg",
+                    description: "A live-action adaptation of the beloved animated film about a young Viking and his dragon companion.",
+                    highlight: "Haven't watched before but the dragon seems cute! 🐲💕",
+                    video: "https://www.youtube.com/embed/22w7z_lT6YM",
+                    color: "#ab47bc"
+                }
+            ];
+            
+            // Create carousel HTML
+            const carouselHTML = `
+                <div class="mobile-carousel">
+                    <div class="movie-carousel">
+                        ${movies.map((movie, index) => `
+                            <div class="movie-card" onclick="openMovieModal(${index})">
+                                <img src="${movie.image}" alt="${movie.title}">
+                                <div class="movie-card-content">
+                                    <h3 style="color: ${movie.color};">${movie.highlight}</h3>
+                                    <p>${movie.description}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="movie-modal" id="movieModal">
+                    <div class="movie-modal-content">
+                        <div class="movie-modal-header">
+                            <button class="movie-modal-close" onclick="closeMovieModal()">&times;</button>
+                            <img id="modalMovieImage" src="" alt="">
+                        </div>
+                        <div class="movie-modal-body">
+                            <h2 id="modalMovieTitle"></h2>
+                            <h3 id="modalMovieHighlight" style="margin-bottom: 10px;"></h3>
+                            <p id="modalMovieDescription"></p>
+                            <div class="video-container">
+                                <iframe id="modalMovieVideo" src="" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Insert carousel before original content
+            const originalContent = document.querySelector('body > *');
+            if (originalContent) {
+                originalContent.insertAdjacentHTML('beforebegin', carouselHTML);
+                // Wrap original content
+                const wrapper = document.createElement('div');
+                wrapper.className = 'original-content';
+                document.body.appendChild(wrapper);
+                while (document.body.children.length > 2) {
+                    wrapper.appendChild(document.body.children[1]);
+                }
+            }
+            
+            // Store movies data globally
+            window.moviesData = movies;
+        }
+        
+        function openMovieModal(index) {
+            const movie = window.moviesData[index];
+            const modal = document.getElementById('movieModal');
+            
+            document.getElementById('modalMovieImage').src = movie.image;
+            document.getElementById('modalMovieTitle').textContent = movie.title;
+            document.getElementById('modalMovieHighlight').textContent = movie.highlight;
+            document.getElementById('modalMovieHighlight').style.color = movie.color;
+            document.getElementById('modalMovieDescription').textContent = movie.description;
+            document.getElementById('modalMovieVideo').src = movie.video;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMovieModal() {
+            const modal = document.getElementById('movieModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            // Stop video
+            document.getElementById('modalMovieVideo').src = '';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('movieModal');
+            if (event.target === modal) {
+                closeMovieModal();
+            }
+        }
     </script>
 </body>
 </html>
