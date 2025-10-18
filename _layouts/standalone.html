@@ -172,10 +172,33 @@
             margin-bottom: 2px !important;
         }
         
-        /* Tighter spacing for videos */
+        /* Responsive video container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 560px;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            margin-top: 2px !important;
+            margin-bottom: 8px !important;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 8px;
+        }
+        
+        /* Fallback for direct iframe styling */
         iframe[src*="youtube"] {
             margin-top: 2px !important;
             margin-bottom: 8px !important;
+            max-width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 16/9 !important;
         }
         
         /* Compact paragraph spacing */
