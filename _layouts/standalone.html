@@ -49,7 +49,7 @@
             line-height: 1.2;
         }
         
-        /* Override for movie section titles */
+        /* Override for section titles */
         h2 {
             margin-top: 1em !important;
             margin-bottom: 0.2em !important;
@@ -58,20 +58,18 @@
         h1 { font-size: 2.5em; border-bottom: 2px solid #eee; padding-bottom: 0.3em; }
         h2 { font-size: 2em; }
         h3 { font-size: 1.5em; }
+        h4 { font-size: 1.3em; }
+        h5 { font-size: 1.1em; }
+        h6 { font-size: 1em; }
         
-        .dark-theme h1 { border-bottom-color: #333; }
+        .dark-theme h1 { border-bottom-color: #444; }
         
-        /* Images */
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        p {
+            margin-bottom: 1em;
         }
         
-        /* Links */
         a {
-            color: #0066cc;
+            color: #007acc;
             text-decoration: none;
         }
         
@@ -80,19 +78,37 @@
         }
         
         .dark-theme a {
-            color: #66ccff;
+            color: #4da6ff;
         }
         
         /* Code blocks */
+        pre, code {
+            font-family: 'Courier New', monospace;
+            background: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .dark-theme pre, .dark-theme code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+        }
+        
         pre {
-            background: #f8f9fa;
             padding: 1em;
-            border-radius: 4px;
             overflow-x: auto;
         }
         
-        .dark-theme pre {
-            background: #2d2d2d;
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        /* Lists */
+        ul, ol {
+            padding-left: 2em;
         }
         
         /* Blockquotes */
@@ -108,7 +124,39 @@
             color: #aaa;
         }
         
-        /* Theme toggle button */
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        .dark-theme th, .dark-theme td {
+            border-color: #555;
+        }
+        
+        .dark-theme th {
+            background-color: #333;
+        }
+        
+        /* Responsive videos */
+        iframe {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        
+        /* Theme toggle */
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -119,600 +167,36 @@
             width: 50px;
             height: 50px;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .theme-toggle:hover {
-            transform: scale(1.1);
+            font-size: 20px;
+            z-index: 1000;
         }
         
         .dark-theme .theme-toggle {
             background: #333;
             color: #fff;
         }
-        
-        /* Video responsive */
-        iframe {
-            max-width: 100%;
-            border-radius: 8px;
-        }
-        
-        /* Image gallery styles */
-        .movie-poster {
-            cursor: default !important;
-            transition: none !important;
-            max-width: 300px !important;
-            width: 300px !important;
-            height: auto !important;
-            border-radius: 8px !important;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
-            display: block !important;
-            margin-bottom: 5px !important;
-            float: none !important;
-        }
-        
-        .movie-poster:hover {
-            transform: none !important;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
-        }
-        
-        /* Override any centering for images */
-        img[src*="standalone"] {
-            max-width: 300px !important;
-            width: 300px !important;
-            margin: 0 0 2px 0 !important;
-            display: block !important;
-            float: none !important;
-        }
-        
-        /* Tighter spacing for movie titles */
-        h3[style*="color:"] {
-            margin-top: 0 !important;
-            margin-bottom: 2px !important;
-        }
-        
-        /* Responsive video container */
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 560px;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            margin-top: 2px !important;
-            margin-bottom: 8px !important;
-            margin-left: 0 !important;
-            margin-right: auto !important;
-        }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100% !important;
-            height: 100% !important;
-            border-radius: 8px;
-        }
-        
-        /* Fallback for direct iframe styling */
-        iframe[src*="youtube"] {
-            margin-top: 2px !important;
-            margin-bottom: 8px !important;
-            max-width: 100% !important;
-            height: auto !important;
-            aspect-ratio: 16/9 !important;
-        }
-        
-        /* Compact paragraph spacing */
-        p {
-            margin-top: 0 !important;
-            margin-bottom: 2px !important;
-        }
-        
-        /* Compact section dividers */
-        hr {
-            margin: 15px 0 !important;
-        }
-        
-        /* Mobile-friendly movie carousel */
-        .movie-carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 20px;
-            padding: 20px 0;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .movie-card {
-            flex: 0 0 280px;
-            scroll-snap-align: start;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
-        }
-        
-        .movie-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .dark-theme .movie-card {
-            background: #2a2a2a;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        
-        .movie-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-        
-        .movie-card-content {
-            padding: 12px;
-            text-align: center;
-        }
-        
-        .movie-card h3 {
-            margin: 0 !important;
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #333;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .dark-theme .movie-card h3 {
-            color: #e0e0e0;
-        }
-        
-        /* Movie detail modal */
-        .movie-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-        
-        .movie-modal-content {
-            background: #fff;
-            margin: 20px;
-            border-radius: 12px;
-            max-width: 600px;
-            margin: 20px auto;
-            position: relative;
-            padding: 30px;
-        }
-        
-        .dark-theme .movie-modal-content {
-            background: #2a2a2a;
-        }
-        
-        .movie-modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0,0,0,0.1);
-            color: #666;
-            border: none;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        
-        .dark-theme .movie-modal-close {
-            background: rgba(255,255,255,0.1);
-            color: #ccc;
-        }
-        
-        .movie-modal h2 {
-            margin-top: 0 !important;
-            margin-bottom: 10px !important;
-        }
-        
-        .movie-modal .video-container {
-            margin: 15px 0;
-        }
-        
-        /* Show carousel on all devices, hide original content */
-        .original-content {
-            display: none;
-        }
-        
-        .movie-carousel-container {
-            display: block;
-        }
-        
-        /* Desktop enhancements */
-        @media (min-width: 769px) {
-            .movie-carousel {
-                gap: 30px;
-                padding: 30px 0;
-            }
-            
-            .movie-card {
-                flex: 0 0 280px;
-            }
-            
-            .movie-card img {
-                height: 350px;
-            }
-            
-            .movie-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            }
-            
-            .movie-modal-content {
-                max-width: 700px;
-                margin: 40px auto;
-                padding: 40px;
-            }
-        }
-        
-        /* Modal styles for enlarged image */
-        .image-modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
-        }
-        
-        .modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            margin: auto;
-            top: 50%;
-            transform: translateY(-50%);
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            animation: modalZoom 0.3s ease;
-        }
-        
-        @keyframes modalZoom {
-            from { transform: translateY(-50%) scale(0.8); opacity: 0; }
-            to { transform: translateY(-50%) scale(1); opacity: 1; }
-        }
-        
-        .modal-image {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            background: #ff4757;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: all 0.2s ease;
-        }
-        
-        .close-modal:hover {
-            background: #ff3838;
-            transform: scale(1.1);
-        }
-        
-        /* Print styles */
-        @media print {
-            .theme-toggle, .image-modal {
-                display: none;
-            }
-            
-            body {
-                max-width: none;
-                padding: 0;
-            }
-        }
     </style>
 </head>
-
 <body>
     <!-- Theme toggle button -->
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-        🌙
-    </button>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light theme">🌓</button>
     
-    <!-- Main content -->
+    <!-- Page content -->
     <main>
-        {% if page.title %}
-            <h1>{{ page.title }}</h1>
-        {% endif %}
-        
-        {% if page.date %}
-            <p style="color: #666; font-style: italic; margin-bottom: 2em;">
-                📅 {{ page.date | date: "%B %d, %Y" }}
-            </p>
-        {% endif %}
-        
         {{ content }}
     </main>
-    
-    <!-- Image Modal -->
-    <div id="imageModal" class="image-modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeImageModal()">&times;</button>
-            <img id="modalImage" class="modal-image" src="" alt="">
-        </div>
-    </div>
     
     <script>
         // Theme toggle functionality
         function toggleTheme() {
-            const body = document.body;
-            const isDark = body.classList.contains('dark-theme');
-            
-            if (isDark) {
-                body.classList.remove('dark-theme');
-                localStorage.setItem('theme', 'light');
-                document.querySelector('.theme-toggle').textContent = '🌙';
-            } else {
-                body.classList.add('dark-theme');
-                localStorage.setItem('theme', 'dark');
-                document.querySelector('.theme-toggle').textContent = '☀️';
-            }
+            document.body.classList.toggle('dark-theme');
+            localStorage.setItem('darkTheme', document.body.classList.contains('dark-theme'));
         }
         
-        // Initialize theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark-theme');
-            document.querySelector('.theme-toggle').textContent = '☀️';
-        }
-        
-        // Font loading optimization
-        if ('fonts' in document) {
-            document.fonts.load('400 1em Lato').then(() => {
-                document.body.style.fontFamily = 'Lato, sans-serif';
-            });
-        }
-        
-        // Image modal functionality
-        function openImageModal(imgSrc, imgAlt) {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            
-            modalImage.src = imgSrc;
-            modalImage.alt = imgAlt;
-            modal.style.display = 'block';
-            
-            // Prevent body scroll when modal is open
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeImageModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-            
-            // Restore body scroll
-            document.body.style.overflow = 'auto';
-        }
-        
-        // Close modal when clicking outside the image
-        document.getElementById('imageModal').onclick = function(e) {
-            if (e.target === this) {
-                closeImageModal();
-            }
-        }
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeImageModal();
-            }
-        });
-        
-        // Initialize movie poster click handlers (disabled for watchlist)
+        // Load saved theme
         document.addEventListener('DOMContentLoaded', function() {
-            // Movie posters in watchlist don't need click-to-enlarge functionality
-            // Just add the styling class without click handlers
-            const images = document.querySelectorAll('img[src*="standalone"]');
-            images.forEach(img => {
-                img.classList.add('movie-poster');
-                // Remove click functionality - images stay at 300px width
-                img.style.cursor = 'default';
-            });
-            
-            // Initialize mobile carousel functionality
-            initMobileCarousel();
-        });
-        
-        function initMobileCarousel() {
-            // Movie data
-            const movies = [
-                {
-                    title: "🥋 Born a Champion",
-                    image: "/assets/img/thumbnail/standalone/BornAChampion.jpg",
-                    description: "Mickey Kelley, one of the first American black belts in Brazilian jiu-jitsu, gets pulled away from everything he loves and into an unsanctioned MMA tournament.",
-                    highlight: "BJJ movie! 🥋🔥",
-                    video: "https://www.youtube.com/embed/CqXcwOHVUBI",
-                    color: "#ff6b6b"
-                },
-                {
-                    title: "🌌 What If...? (Season 1)",
-                    image: "/assets/img/thumbnail/standalone/WhatIfSeason1.jpg",
-                    description: "Exploring pivotal moments from the Marvel Cinematic Universe and turning them on their head, leading the audience into uncharted territory.",
-                    highlight: "Marvel multiverse exploration! 🌟✨",
-                    video: "https://www.youtube.com/embed/x9D0uUKJ5KI",
-                    color: "#9c27b0"
-                },
-                {
-                    title: "👽 Alien: Romulus",
-                    image: "/assets/img/thumbnail/standalone/AlienRomulus.jpg",
-                    description: "While scavenging the deep ends of a derelict space station, a group of young space colonists come face to face with the most terrifying life form in the universe.",
-                    highlight: "Terrifying space horror! 👽🚀",
-                    video: "https://www.youtube.com/embed/OzY2r2JXsDM",
-                    color: "#e53e3e"
-                },
-                {
-                    title: "🕷️ Spider-Man: Into the Spider-Verse",
-                    image: "/assets/img/thumbnail/standalone/SpiderManIntoTheSpiderVerse.jpg",
-                    description: "An animated superhero film that follows Miles Morales as he becomes Spider-Man in his own dimension.",
-                    highlight: "I love superhero movies! 🦸‍♂️💥",
-                    video: "https://www.youtube.com/embed/g4Hbz2jLxvQ",
-                    color: "#4ecdc4"
-                },
-                {
-                    title: "⚔️ Rurouni Kenshin Part I: Origins",
-                    image: "/assets/img/thumbnail/standalone/RurouniKenshinOrigins.jpg",
-                    description: "A former assassin who has resolved to never kill again has his vow sorely tested.",
-                    highlight: "Amazing Action Movie With Super Fancy Movements! ⚔️🔥",
-                    video: "https://www.youtube.com/embed/SZCAIAvQeAM",
-                    color: "#ffa726"
-                },
-                {
-                    title: "🐉 How to Train Your Dragon",
-                    image: "/assets/img/thumbnail/standalone/HowToTrainYourDragon.jpg",
-                    description: "A live-action adaptation of the beloved animated film about a young Viking and his dragon companion.",
-                    highlight: "Haven't watched before but the dragon seems cute! 🐲💕",
-                    video: "https://www.youtube.com/embed/22w7z_lT6YM",
-                    color: "#ab47bc"
-                }
-            ];
-            
-            // Create carousel HTML
-            const carouselHTML = `
-                <div class="movie-carousel-container">
-                    <h1>Check These Out Sarah!!!</h1>
-                    <div class="movie-carousel">
-                        ${movies.map((movie, index) => `
-                            <div class="movie-card" onclick="openMovieModal(${index})">
-                                <img src="${movie.image}" alt="${movie.title}">
-                                <div class="movie-card-content">
-                                    <h3>${movie.title}</h3>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                
-                <div class="movie-modal" id="movieModal">
-                    <div class="movie-modal-content">
-                        <button class="movie-modal-close" onclick="closeMovieModal()">&times;</button>
-                        <h3 id="modalMovieHighlight" style="margin-top: 0; margin-bottom: 15px;"></h3>
-                        <p id="modalMovieDescription" style="margin-bottom: 20px; line-height: 1.6;"></p>
-                        <div class="video-container">
-                            <iframe id="modalMovieVideo" src="" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            // Insert carousel at the beginning of body
-            document.body.insertAdjacentHTML('afterbegin', carouselHTML);
-            
-            // Wrap all existing content in original-content div
-            const existingContent = Array.from(document.body.children).slice(2); // Skip carousel and modal
-            const wrapper = document.createElement('div');
-            wrapper.className = 'original-content';
-            
-            existingContent.forEach(element => {
-                wrapper.appendChild(element);
-            });
-            
-            document.body.appendChild(wrapper);
-            
-            // Store movies data globally
-            window.moviesData = movies;
-            
-            // Debug: Log carousel creation
-            console.log('Mobile carousel created with', movies.length, 'movies');
-            console.log('Carousel element:', document.querySelector('.movie-carousel'));
-        }
-        
-        // Global functions for modal control
-        window.openMovieModal = function(index) {
-            const movie = window.moviesData[index];
-            const modal = document.getElementById('movieModal');
-            
-            if (!movie || !modal) {
-                console.error('Movie data or modal not found');
-                return;
-            }
-            
-            document.getElementById('modalMovieHighlight').textContent = movie.highlight;
-            document.getElementById('modalMovieHighlight').style.color = movie.color;
-            document.getElementById('modalMovieDescription').textContent = movie.description;
-            document.getElementById('modalMovieVideo').src = movie.video;
-            
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        };
-        
-        window.closeMovieModal = function() {
-            const modal = document.getElementById('movieModal');
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                // Stop video
-                const video = document.getElementById('modalMovieVideo');
-                if (video) {
-                    video.src = '';
-                }
-            }
-        };
-        
-        // Close modal when clicking/touching outside
-        function handleModalClose(event) {
-            const modal = document.getElementById('movieModal');
-            if (event.target === modal) {
-                closeMovieModal();
-            }
-        }
-        
-        // Add event listeners for better mobile compatibility
-        document.addEventListener('click', handleModalClose);
-        document.addEventListener('touchend', handleModalClose);
-        
-        // Prevent event bubbling on modal content
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                const modalContent = document.querySelector('.movie-modal-content');
-                if (modalContent) {
-                    modalContent.addEventListener('click', function(event) {
-                        event.stopPropagation();
-                    });
-                    modalContent.addEventListener('touchend', function(event) {
-                        event.stopPropagation();
-                    });
-                }
-            }, 100);
-        });
-        
-        // Close modal with ESC key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const modal = document.getElementById('movieModal');
-                if (modal && modal.style.display === 'block') {
-                    closeMovieModal();
-                }
+            if (localStorage.getItem('darkTheme') === 'true') {
+                document.body.classList.add('dark-theme');
             }
         });
     </script>
