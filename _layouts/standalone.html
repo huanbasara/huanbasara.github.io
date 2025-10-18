@@ -679,13 +679,32 @@
             }
         };
         
-        // Close modal when clicking outside or pressing ESC
-        window.onclick = function(event) {
+        // Close modal when clicking/touching outside
+        function handleModalClose(event) {
             const modal = document.getElementById('movieModal');
             if (event.target === modal) {
                 closeMovieModal();
             }
-        };
+        }
+        
+        // Add event listeners for better mobile compatibility
+        document.addEventListener('click', handleModalClose);
+        document.addEventListener('touchend', handleModalClose);
+        
+        // Prevent event bubbling on modal content
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const modalContent = document.querySelector('.movie-modal-content');
+                if (modalContent) {
+                    modalContent.addEventListener('click', function(event) {
+                        event.stopPropagation();
+                    });
+                    modalContent.addEventListener('touchend', function(event) {
+                        event.stopPropagation();
+                    });
+                }
+            }, 100);
+        });
         
         // Close modal with ESC key
         document.addEventListener('keydown', function(event) {
