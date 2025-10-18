@@ -6,15 +6,17 @@ thumbnail: "/assets/img/thumbnail/standalone/SpiderManIntoTheSpiderVerse.jpg"
 ---
 
 
-## 🏰 Castle in the Sky
+## 🥋 Born a Champion
 
-**Director:** Hayao Miyazaki  
-**Year:** 1986  
-**Studio:** Studio Ghibli  
+**Director:** Alex Ranarivelo  
+**Year:** 2021  
+**Genre:** Sports Drama, MMA  
 
-<img src="/assets/img/thumbnail/standalone/CastleInTheSky.jpg" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="Castle in the Sky">
+<img src="/assets/img/thumbnail/standalone/BornAChampion.jpg" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="Born a Champion">
 
-<h3 style="color: #ff6b6b; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Love the music in this one! 🎵✨</h3>
+<h3 style="color: #ff6b6b; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Perfect BJJ movie for me! 🥋🔥</h3>
+
+<iframe src="https://www.youtube.com/embed/CqXcwOHVUBI" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="315" width="100%" style="max-width: 560px; border-radius: 8px; margin-top: 15px;"></iframe>
 
 ---
 
