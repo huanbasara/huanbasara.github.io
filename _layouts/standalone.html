@@ -291,42 +291,31 @@
             max-width: 600px;
             margin: 20px auto;
             position: relative;
+            padding: 30px;
         }
         
         .dark-theme .movie-modal-content {
             background: #2a2a2a;
         }
         
-        .movie-modal-header {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-            border-radius: 12px 12px 0 0;
-        }
-        
-        .movie-modal-header img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
         .movie-modal-close {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: rgba(0,0,0,0.7);
-            color: white;
+            background: rgba(0,0,0,0.1);
+            color: #666;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
+            width: 35px;
+            height: 35px;
+            font-size: 18px;
             cursor: pointer;
             z-index: 1001;
         }
         
-        .movie-modal-body {
-            padding: 20px;
+        .dark-theme .movie-modal-close {
+            background: rgba(255,255,255,0.1);
+            color: #ccc;
         }
         
         .movie-modal h2 {
@@ -370,10 +359,7 @@
             .movie-modal-content {
                 max-width: 700px;
                 margin: 40px auto;
-            }
-            
-            .movie-modal-header {
-                height: 350px;
+                padding: 40px;
             }
         }
         
@@ -629,17 +615,12 @@
                 
                 <div class="movie-modal" id="movieModal">
                     <div class="movie-modal-content">
-                        <div class="movie-modal-header">
-                            <button class="movie-modal-close" onclick="closeMovieModal()">&times;</button>
-                            <img id="modalMovieImage" src="" alt="">
-                        </div>
-                        <div class="movie-modal-body">
-                            <h2 id="modalMovieTitle"></h2>
-                            <h3 id="modalMovieHighlight" style="margin-bottom: 10px;"></h3>
-                            <p id="modalMovieDescription"></p>
-                            <div class="video-container">
-                                <iframe id="modalMovieVideo" src="" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-                            </div>
+                        <button class="movie-modal-close" onclick="closeMovieModal()">&times;</button>
+                        <h2 id="modalMovieTitle"></h2>
+                        <h3 id="modalMovieHighlight" style="margin-bottom: 15px;"></h3>
+                        <p id="modalMovieDescription" style="margin-bottom: 20px; line-height: 1.6;"></p>
+                        <div class="video-container">
+                            <iframe id="modalMovieVideo" src="" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                         </div>
                     </div>
                 </div>
@@ -677,7 +658,6 @@
                 return;
             }
             
-            document.getElementById('modalMovieImage').src = movie.image;
             document.getElementById('modalMovieTitle').textContent = movie.title;
             document.getElementById('modalMovieHighlight').textContent = movie.highlight;
             document.getElementById('modalMovieHighlight').style.color = movie.color;
