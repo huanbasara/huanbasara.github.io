@@ -155,7 +155,7 @@
         img[src*="standalone"] {
             max-width: 300px !important;
             width: 300px !important;
-            margin: 0 0 5px 0 !important;
+            margin: 0 0 2px 0 !important;
             display: block !important;
             float: none !important;
         }
@@ -163,12 +163,24 @@
         /* Tighter spacing for movie titles */
         h3[style*="color:"] {
             margin-top: 0 !important;
-            margin-bottom: 4px !important;
+            margin-bottom: 2px !important;
         }
         
         /* Tighter spacing for videos */
         iframe[src*="youtube"] {
-            margin-top: 5px !important;
+            margin-top: 2px !important;
+            margin-bottom: 8px !important;
+        }
+        
+        /* Compact paragraph spacing */
+        p {
+            margin-top: 0 !important;
+            margin-bottom: 2px !important;
+        }
+        
+        /* Compact section dividers */
+        hr {
+            margin: 15px 0 !important;
         }
         
         /* Modal styles for enlarged image */
