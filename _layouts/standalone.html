@@ -233,6 +233,8 @@
             overflow: hidden;
             cursor: pointer;
             transition: transform 0.3s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
         }
         
         .movie-card:hover {
@@ -627,26 +629,37 @@
                 </div>
             `;
             
-            // Insert carousel before original content
-            const originalContent = document.querySelector('body > *');
-            if (originalContent) {
-                originalContent.insertAdjacentHTML('beforebegin', carouselHTML);
-                // Wrap original content
-                const wrapper = document.createElement('div');
-                wrapper.className = 'original-content';
-                document.body.appendChild(wrapper);
-                while (document.body.children.length > 2) {
-                    wrapper.appendChild(document.body.children[1]);
-                }
-            }
+            // Insert carousel at the beginning of body
+            document.body.insertAdjacentHTML('afterbegin', carouselHTML);
+            
+            // Wrap all existing content in original-content div
+            const existingContent = Array.from(document.body.children).slice(2); // Skip carousel and modal
+            const wrapper = document.createElement('div');
+            wrapper.className = 'original-content';
+            
+            existingContent.forEach(element => {
+                wrapper.appendChild(element);
+            });
+            
+            document.body.appendChild(wrapper);
             
             // Store movies data globally
             window.moviesData = movies;
+            
+            // Debug: Log carousel creation
+            console.log('Mobile carousel created with', movies.length, 'movies');
+            console.log('Carousel element:', document.querySelector('.movie-carousel'));
         }
         
-        function openMovieModal(index) {
+        // Global functions for modal control
+        window.openMovieModal = function(index) {
             const movie = window.moviesData[index];
             const modal = document.getElementById('movieModal');
+            
+            if (!movie || !modal) {
+                console.error('Movie data or modal not found');
+                return;
+            }
             
             document.getElementById('modalMovieImage').src = movie.image;
             document.getElementById('modalMovieTitle').textContent = movie.title;
@@ -657,15 +670,20 @@
             
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
-        }
+        };
         
-        function closeMovieModal() {
+        window.closeMovieModal = function() {
             const modal = document.getElementById('movieModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            // Stop video
-            document.getElementById('modalMovieVideo').src = '';
-        }
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                // Stop video
+                const video = document.getElementById('modalMovieVideo');
+                if (video) {
+                    video.src = '';
+                }
+            }
+        };
         
         // Close modal when clicking outside
         window.onclick = function(event) {
