@@ -342,22 +342,38 @@
             margin: 15px 0;
         }
         
-        /* Hide original content on mobile, show carousel */
-        @media (max-width: 768px) {
-            .original-content {
-                display: none;
-            }
-            .mobile-carousel {
-                display: block;
-            }
+        /* Show carousel on all devices, hide original content */
+        .original-content {
+            display: none;
         }
         
+        .movie-carousel-container {
+            display: block;
+        }
+        
+        /* Desktop enhancements */
         @media (min-width: 769px) {
-            .original-content {
-                display: block;
+            .movie-carousel {
+                gap: 30px;
+                padding: 30px 0;
             }
-            .mobile-carousel {
-                display: none;
+            
+            .movie-card {
+                flex: 0 0 320px;
+            }
+            
+            .movie-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            }
+            
+            .movie-modal-content {
+                max-width: 700px;
+                margin: 40px auto;
+            }
+            
+            .movie-modal-header {
+                height: 350px;
             }
         }
         
@@ -597,7 +613,8 @@
             
             // Create carousel HTML
             const carouselHTML = `
-                <div class="mobile-carousel">
+                <div class="movie-carousel-container">
+                    <h1>Check These Out Sarah!!!</h1>
                     <div class="movie-carousel">
                         ${movies.map((movie, index) => `
                             <div class="movie-card" onclick="openMovieModal(${index})">
