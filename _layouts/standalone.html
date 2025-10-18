@@ -313,14 +313,15 @@
             }
         });
         
-        // Initialize movie poster click handlers
+        // Initialize movie poster click handlers (disabled for watchlist)
         document.addEventListener('DOMContentLoaded', function() {
+            // Movie posters in watchlist don't need click-to-enlarge functionality
+            // Just add the styling class without click handlers
             const images = document.querySelectorAll('img[src*="standalone"]');
             images.forEach(img => {
                 img.classList.add('movie-poster');
-                img.onclick = function() {
-                    openImageModal(this.src, this.alt);
-                };
+                // Remove click functionality - images stay at 300px width
+                img.style.cursor = 'default';
             });
         });
     </script>
