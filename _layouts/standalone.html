@@ -616,8 +616,7 @@
                 <div class="movie-modal" id="movieModal">
                     <div class="movie-modal-content">
                         <button class="movie-modal-close" onclick="closeMovieModal()">&times;</button>
-                        <h2 id="modalMovieTitle"></h2>
-                        <h3 id="modalMovieHighlight" style="margin-bottom: 15px;"></h3>
+                        <h3 id="modalMovieHighlight" style="margin-top: 0; margin-bottom: 15px;"></h3>
                         <p id="modalMovieDescription" style="margin-bottom: 20px; line-height: 1.6;"></p>
                         <div class="video-container">
                             <iframe id="modalMovieVideo" src="" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
@@ -658,7 +657,6 @@
                 return;
             }
             
-            document.getElementById('modalMovieTitle').textContent = movie.title;
             document.getElementById('modalMovieHighlight').textContent = movie.highlight;
             document.getElementById('modalMovieHighlight').style.color = movie.color;
             document.getElementById('modalMovieDescription').textContent = movie.description;
@@ -681,13 +679,23 @@
             }
         };
         
-        // Close modal when clicking outside
+        // Close modal when clicking outside or pressing ESC
         window.onclick = function(event) {
             const modal = document.getElementById('movieModal');
             if (event.target === modal) {
                 closeMovieModal();
             }
-        }
+        };
+        
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modal = document.getElementById('movieModal');
+                if (modal && modal.style.display === 'block') {
+                    closeMovieModal();
+                }
+            }
+        });
     </script>
 </body>
 </html>
