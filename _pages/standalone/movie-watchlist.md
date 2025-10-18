@@ -22,6 +22,22 @@ Mickey Kelley, one of the first American black belts in Brazilian jiu-jitsu, get
 
 ---
 
+## 🌌 What If...? (Season 1)
+
+**Creator:** A.C. Bradley  
+**Year:** 2021  
+**Studio:** Marvel Studios  
+
+<img src="/assets/img/thumbnail/standalone/WhatIfSeason1.jpg" style="max-width: 300px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: block; margin: 0 auto;" alt="What If...? Season 1">
+
+<h3 style="color: #9c27b0; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Marvel multiverse exploration! 🌟✨</h3>
+
+Exploring pivotal moments from the Marvel Cinematic Universe and turning them on their head, leading the audience into uncharted territory.
+
+<iframe src="https://www.youtube.com/embed/x9D0uUKJ5KI" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="315" width="100%" style="max-width: 560px; border-radius: 8px; margin-top: 15px;"></iframe>
+
+---
+
 ## 🕷️ Spider-Man: Into the Spider-Verse
 
 **Director:** Bob Persichetti, Peter Ramsey, Rodney Rothman  

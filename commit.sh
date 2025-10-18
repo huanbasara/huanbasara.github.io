@@ -3,16 +3,13 @@
 # Git commit and push script
 # Usage: ./commit.sh "Your commit message"
 
-# Check if commit message is provided
+# Get the commit message from the first argument, or use default
 if [ $# -eq 0 ]; then
-    echo "❌ Error: Please provide a commit message"
-    echo "Usage: ./commit.sh \"Your commit message\""
-    echo "Example: ./commit.sh \"Add new movie to watchlist\""
-    exit 1
+    COMMIT_MESSAGE="Update movie watchlist - $(date '+%Y-%m-%d %H:%M')"
+    echo "ℹ️  No commit message provided, using default message"
+else
+    COMMIT_MESSAGE="$1"
 fi
-
-# Get the commit message from the first argument
-COMMIT_MESSAGE="$1"
 
 echo "🚀 Starting git operations..."
 echo "📝 Commit message: $COMMIT_MESSAGE"
