@@ -134,17 +134,41 @@
         
         /* Image gallery styles */
         .movie-poster {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: default !important;
+            transition: none !important;
+            max-width: 300px !important;
+            width: 300px !important;
+            height: auto !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+            display: block !important;
+            margin-bottom: 5px !important;
+            float: none !important;
         }
         
         .movie-poster:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transform: none !important;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+        }
+        
+        /* Override any centering for images */
+        img[src*="standalone"] {
+            max-width: 300px !important;
+            width: 300px !important;
+            margin: 0 0 5px 0 !important;
+            display: block !important;
+            float: none !important;
+        }
+        
+        /* Tighter spacing for movie titles */
+        h3[style*="color:"] {
+            margin-top: 0 !important;
+            margin-bottom: 4px !important;
+        }
+        
+        /* Tighter spacing for videos */
+        iframe[src*="youtube"] {
+            margin-top: 5px !important;
         }
         
         /* Modal styles for enlarged image */
