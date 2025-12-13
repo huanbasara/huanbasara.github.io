@@ -130,16 +130,28 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 60px 20px 20px;
             cursor: pointer;
+            margin: 0;
         }
 
         .video-item.expanded .video-embed-wrapper {
+            position: relative;
             width: 100%;
             max-width: 400px;
-            padding-bottom: 177.78%;
+            height: auto;
+            padding-bottom: 177.78%; /* 9:16 aspect ratio */
             cursor: default;
             pointer-events: auto;
+            margin: 0 auto;
+        }
+
+        .video-item.expanded .video-embed-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         .video-item.expanded::before {
@@ -228,9 +240,13 @@
                 gap: 10px;
             }
             
+            .video-item.expanded {
+                padding: 50px 15px 15px;
+            }
+            
             .video-item.expanded .video-embed-wrapper {
                 max-width: 100%;
-                padding: 10px;
+                width: 100%;
             }
         }
 
@@ -250,11 +266,12 @@
             }
             
             .video-item.expanded {
-                padding: 10px;
+                padding: 50px 10px 10px;
             }
             
             .video-item.expanded .video-embed-wrapper {
                 max-width: 100%;
+                width: 100%;
             }
             
             .close-video-btn {
@@ -356,7 +373,6 @@
                     embedWrapper.onclick = (e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        console.log('Video clicked, expanding...');
                         expandVideo(videoItem);
                     };
                     
@@ -415,8 +431,6 @@
         }
 
         function expandVideo(videoItem) {
-            console.log('expandVideo called', videoItem);
-            
             // Close any other expanded videos
             document.querySelectorAll('.video-item.expanded').forEach(item => {
                 if (item !== videoItem) {
@@ -436,8 +450,6 @@
             // Expand current video
             videoItem.classList.add('expanded');
             document.body.style.overflow = 'hidden';
-            
-            console.log('Video expanded, class added:', videoItem.classList.contains('expanded'));
             
             // Remove the wrapper click handler when expanded (so iframe can work)
             const embedWrapper = videoItem.querySelector('.video-embed-wrapper');
