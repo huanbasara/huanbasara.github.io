@@ -100,10 +100,53 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .close-section-btn {
+            position: sticky;
+            top: 15px;
+            z-index: 10;
+            background: linear-gradient(135deg, var(--accent-color), #ff6b6b);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 20px rgba(233, 69, 96, 0.5);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            align-self: center;
+            width: fit-content;
+            backdrop-filter: blur(10px);
+        }
+
+        .close-section-btn:hover {
+            background: linear-gradient(45deg, #ff8a80, var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.6);
+        }
+
+        .close-section-btn:active {
+            transform: translateY(0);
+        }
+
+        .theme-container:not(.expanded) .close-section-btn {
+            display: none;
         }
 
         .video-item {
             width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 12px;
             overflow: hidden;
@@ -269,6 +312,13 @@
                 const videoList = document.createElement('div');
                 videoList.className = 'video-list';
                 
+                // Add close button at the top of video list
+                const closeBtn = document.createElement('button');
+                closeBtn.className = 'close-section-btn';
+                closeBtn.innerHTML = '<i class="fas fa-times"></i> Close';
+                closeBtn.onclick = () => toggleTheme(themeName);
+                videoList.appendChild(closeBtn);
+                
                 // Add videos
                 videos.forEach(video => {
                     const videoItem = document.createElement('div');
@@ -277,13 +327,14 @@
                     const embedWrapper = document.createElement('div');
                     embedWrapper.className = 'video-embed-wrapper';
                     
-                    const embedUrl = `https://www.youtube.com/embed/${video.videoId}?rel=0&modestbranding=1`;
+                    const embedUrl = `https://www.youtube.com/embed/${video.videoId}?rel=0&modestbranding=1&controls=1&showinfo=0&fs=1&playsinline=1`;
                     
                     const iframe = document.createElement('iframe');
                     iframe.src = embedUrl;
                     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
                     iframe.allowFullscreen = true;
                     iframe.loading = 'lazy';
+                    iframe.dataset.videoSrc = embedUrl; // Store original src for reloading
                     
                     embedWrapper.appendChild(iframe);
                     videoItem.appendChild(embedWrapper);
@@ -297,9 +348,36 @@
             });
         }
 
+        function pauseAllVideos(exceptContainer) {
+            // Pause all videos except the one in the specified container
+            document.querySelectorAll('.video-embed-wrapper iframe').forEach(iframe => {
+                const iframeContainer = iframe.closest('.theme-container');
+                if (iframeContainer && iframeContainer !== exceptContainer) {
+                    try {
+                        // Method 1: Try YouTube IFrame API pause command
+                        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                    } catch (e) {
+                        // Method 2: If postMessage fails, reload iframe to stop playback
+                        const originalSrc = iframe.dataset.videoSrc || iframe.src;
+                        if (originalSrc) {
+                            iframe.src = '';
+                            setTimeout(() => {
+                                iframe.src = originalSrc;
+                            }, 100);
+                        }
+                    }
+                }
+            });
+        }
+
         function toggleTheme(themeName) {
             const container = document.querySelector(`[data-theme="${themeName}"]`);
             const isExpanded = container.classList.contains('expanded');
+            
+            // If expanding a new theme, pause all other videos
+            if (!isExpanded) {
+                pauseAllVideos(container);
+            }
             
             // Close all other themes
             document.querySelectorAll('.theme-container').forEach(el => {
