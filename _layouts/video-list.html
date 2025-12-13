@@ -347,10 +347,18 @@
                 videos.forEach(video => {
                     const videoItem = document.createElement('div');
                     videoItem.className = 'video-item';
-                    videoItem.onclick = () => expandVideo(videoItem);
                     
                     const embedWrapper = document.createElement('div');
                     embedWrapper.className = 'video-embed-wrapper';
+                    
+                    // Add click handler to wrapper (not iframe)
+                    embedWrapper.style.cursor = 'pointer';
+                    embedWrapper.onclick = (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log('Video clicked, expanding...');
+                        expandVideo(videoItem);
+                    };
                     
                     const embedUrl = `https://www.youtube.com/embed/${video.videoId}?rel=0&modestbranding=1&controls=1&showinfo=0&fs=1&playsinline=1`;
                     
@@ -360,6 +368,7 @@
                     iframe.allowFullscreen = true;
                     iframe.loading = 'lazy';
                     iframe.dataset.videoSrc = embedUrl; // Store original src for reloading
+                    iframe.style.pointerEvents = 'none'; // Prevent iframe from capturing clicks when not expanded
                     
                     // Add close button for expanded state
                     const closeBtn = document.createElement('button');
@@ -406,6 +415,8 @@
         }
 
         function expandVideo(videoItem) {
+            console.log('expandVideo called', videoItem);
+            
             // Close any other expanded videos
             document.querySelectorAll('.video-item.expanded').forEach(item => {
                 if (item !== videoItem) {
@@ -416,15 +427,30 @@
             // Pause all other videos
             pauseAllVideos(null);
             
+            // Enable iframe interaction when expanded
+            const iframe = videoItem.querySelector('iframe');
+            if (iframe) {
+                iframe.style.pointerEvents = 'auto';
+            }
+            
             // Expand current video
             videoItem.classList.add('expanded');
             document.body.style.overflow = 'hidden';
             
+            console.log('Video expanded, class added:', videoItem.classList.contains('expanded'));
+            
+            // Remove the wrapper click handler when expanded (so iframe can work)
+            const embedWrapper = videoItem.querySelector('.video-embed-wrapper');
+            if (embedWrapper) {
+                embedWrapper.onclick = null;
+                embedWrapper.style.cursor = 'default';
+            }
+            
             // Close when clicking on background (but not on video iframe)
             const handleBackgroundClick = (e) => {
-                const embedWrapper = videoItem.querySelector('.video-embed-wrapper');
-                // Only close if clicking outside the video iframe
-                if (!embedWrapper.contains(e.target) && e.target !== videoItem.querySelector('iframe')) {
+                const wrapper = videoItem.querySelector('.video-embed-wrapper');
+                // Only close if clicking outside the video wrapper
+                if (wrapper && !wrapper.contains(e.target)) {
                     closeVideo(videoItem);
                     videoItem.removeEventListener('click', handleBackgroundClick);
                 }
@@ -440,9 +466,23 @@
             videoItem.classList.remove('expanded');
             document.body.style.overflow = 'auto';
             
-            // Pause the video when closing
+            // Restore wrapper click handler
+            const embedWrapper = videoItem.querySelector('.video-embed-wrapper');
+            if (embedWrapper) {
+                embedWrapper.style.cursor = 'pointer';
+                embedWrapper.onclick = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    expandVideo(videoItem);
+                };
+            }
+            
+            // Disable iframe interaction when closed
             const iframe = videoItem.querySelector('iframe');
             if (iframe) {
+                iframe.style.pointerEvents = 'none';
+                
+                // Pause the video when closing
                 try {
                     iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
                 } catch (e) {
