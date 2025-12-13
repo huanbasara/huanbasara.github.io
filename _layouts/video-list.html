@@ -22,7 +22,9 @@
         :root {
             --primary-color: #1a1a2e;
             --secondary-color: #16213e;
-            --accent-color: #e94560;
+            --accent-color: #4a90e2;
+            --accent-dark: #2c5aa0;
+            --accent-light: #6ba3e8;
             --text-color: #ffffff;
             --card-bg: #0f3460;
         }
@@ -43,7 +45,7 @@
         }
 
         .theme-container {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
@@ -52,7 +54,7 @@
         }
 
         .theme-container.expanded {
-            box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
         }
 
         .theme-tag {
@@ -61,13 +63,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(45deg, var(--accent-color), #ff8a80);
             transition: all 0.3s ease;
             user-select: none;
         }
 
+        /* Alternating blue colors for tags */
+        .theme-container:nth-child(1) .theme-tag {
+            background: linear-gradient(135deg, var(--accent-dark), var(--accent-color));
+        }
+
+        .theme-container:nth-child(2) .theme-tag {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+        }
+
+        .theme-container:nth-child(3) .theme-tag {
+            background: linear-gradient(135deg, var(--accent-dark), var(--accent-color));
+        }
+
         .theme-tag:hover {
-            background: linear-gradient(45deg, #ff8a80, var(--accent-color));
+            opacity: 0.9;
+            transform: translateX(5px);
         }
 
         .theme-tag h2 {
@@ -98,9 +113,9 @@
         .video-list {
             padding: 15px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            transition: all 0.3s ease;
+            max-width: 100%;
         }
 
         .video-item {
@@ -109,94 +124,18 @@
             border-radius: 10px;
             overflow: hidden;
             transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
+            aspect-ratio: 9/16; /* Maintain vertical video aspect ratio */
         }
 
         .video-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(233, 69, 96, 0.4);
-        }
-
-        .video-item.expanded {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.95);
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px 20px;
-            cursor: pointer;
-            margin: 0;
-        }
-
-        .video-item.expanded .video-embed-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            padding-bottom: 177.78%; /* 9:16 aspect ratio */
-            cursor: default;
-            pointer-events: auto;
-            margin: 0 auto;
-        }
-
-        .video-item.expanded .video-embed-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .video-item.expanded::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        .close-video-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(233, 69, 96, 0.9);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 1001;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .video-item.expanded .close-video-btn {
-            display: flex;
-        }
-
-        .close-video-btn:hover {
-            background: var(--accent-color);
-            transform: rotate(90deg);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3);
         }
 
         .video-embed-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 177.78%; /* 9:16 aspect ratio for YouTube Shorts */
-            height: 0;
+            height: 100%;
             overflow: hidden;
             background: #000;
         }
@@ -212,9 +151,9 @@
 
         /* Collapsed state - small thumbnails */
         .theme-container:not(.expanded) .video-list {
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 8px;
             padding: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
         }
 
         .theme-container:not(.expanded) .video-item {
@@ -236,17 +175,8 @@
             }
             
             .video-list {
-                padding: 15px;
+                padding: 12px;
                 gap: 10px;
-            }
-            
-            .video-item.expanded {
-                padding: 50px 15px 15px;
-            }
-            
-            .video-item.expanded .video-embed-wrapper {
-                max-width: 100%;
-                width: 100%;
             }
         }
 
@@ -259,27 +189,9 @@
                 font-size: 1.1rem;
             }
             
-            .theme-container:not(.expanded) .video-list {
-                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-                gap: 6px;
-                padding: 8px;
-            }
-            
-            .video-item.expanded {
-                padding: 50px 10px 10px;
-            }
-            
-            .video-item.expanded .video-embed-wrapper {
-                max-width: 100%;
-                width: 100%;
-            }
-            
-            .close-video-btn {
-                top: 10px;
-                right: 10px;
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
+            .video-list {
+                padding: 10px;
+                gap: 8px;
             }
         }
     </style>
@@ -368,14 +280,6 @@
                     const embedWrapper = document.createElement('div');
                     embedWrapper.className = 'video-embed-wrapper';
                     
-                    // Add click handler to wrapper (not iframe)
-                    embedWrapper.style.cursor = 'pointer';
-                    embedWrapper.onclick = (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        expandVideo(videoItem);
-                    };
-                    
                     const embedUrl = `https://www.youtube.com/embed/${video.videoId}?rel=0&modestbranding=1&controls=1&showinfo=0&fs=1&playsinline=1`;
                     
                     const iframe = document.createElement('iframe');
@@ -383,21 +287,9 @@
                     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
                     iframe.allowFullscreen = true;
                     iframe.loading = 'lazy';
-                    iframe.dataset.videoSrc = embedUrl; // Store original src for reloading
-                    iframe.style.pointerEvents = 'none'; // Prevent iframe from capturing clicks when not expanded
-                    
-                    // Add close button for expanded state
-                    const closeBtn = document.createElement('button');
-                    closeBtn.className = 'close-video-btn';
-                    closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-                    closeBtn.onclick = (e) => {
-                        e.stopPropagation();
-                        closeVideo(videoItem);
-                    };
                     
                     embedWrapper.appendChild(iframe);
                     videoItem.appendChild(embedWrapper);
-                    videoItem.appendChild(closeBtn);
                     videoList.appendChild(videoItem);
                 });
                 
@@ -414,15 +306,14 @@
                 const iframeContainer = iframe.closest('.theme-container');
                 if (iframeContainer && iframeContainer !== exceptContainer) {
                     try {
-                        // Method 1: Try YouTube IFrame API pause command
                         iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
                     } catch (e) {
-                        // Method 2: If postMessage fails, reload iframe to stop playback
-                        const originalSrc = iframe.dataset.videoSrc || iframe.src;
-                        if (originalSrc) {
+                        // If postMessage fails, reload iframe to stop playback
+                        const currentSrc = iframe.src;
+                        if (currentSrc) {
                             iframe.src = '';
                             setTimeout(() => {
-                                iframe.src = originalSrc;
+                                iframe.src = currentSrc;
                             }, 100);
                         }
                     }
@@ -430,94 +321,9 @@
             });
         }
 
-        function expandVideo(videoItem) {
-            // Close any other expanded videos
-            document.querySelectorAll('.video-item.expanded').forEach(item => {
-                if (item !== videoItem) {
-                    closeVideo(item);
-                }
-            });
-            
-            // Pause all other videos
-            pauseAllVideos(null);
-            
-            // Enable iframe interaction when expanded
-            const iframe = videoItem.querySelector('iframe');
-            if (iframe) {
-                iframe.style.pointerEvents = 'auto';
-            }
-            
-            // Expand current video
-            videoItem.classList.add('expanded');
-            document.body.style.overflow = 'hidden';
-            
-            // Remove the wrapper click handler when expanded (so iframe can work)
-            const embedWrapper = videoItem.querySelector('.video-embed-wrapper');
-            if (embedWrapper) {
-                embedWrapper.onclick = null;
-                embedWrapper.style.cursor = 'default';
-            }
-            
-            // Close when clicking on background (but not on video iframe)
-            const handleBackgroundClick = (e) => {
-                const wrapper = videoItem.querySelector('.video-embed-wrapper');
-                // Only close if clicking outside the video wrapper
-                if (wrapper && !wrapper.contains(e.target)) {
-                    closeVideo(videoItem);
-                    videoItem.removeEventListener('click', handleBackgroundClick);
-                }
-            };
-            
-            // Add click listener after a short delay to avoid immediate close
-            setTimeout(() => {
-                videoItem.addEventListener('click', handleBackgroundClick);
-            }, 100);
-        }
-
-        function closeVideo(videoItem) {
-            videoItem.classList.remove('expanded');
-            document.body.style.overflow = 'auto';
-            
-            // Restore wrapper click handler
-            const embedWrapper = videoItem.querySelector('.video-embed-wrapper');
-            if (embedWrapper) {
-                embedWrapper.style.cursor = 'pointer';
-                embedWrapper.onclick = (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    expandVideo(videoItem);
-                };
-            }
-            
-            // Disable iframe interaction when closed
-            const iframe = videoItem.querySelector('iframe');
-            if (iframe) {
-                iframe.style.pointerEvents = 'none';
-                
-                // Pause the video when closing
-                try {
-                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-                } catch (e) {
-                    // If postMessage fails, reload iframe
-                    const originalSrc = iframe.dataset.videoSrc || iframe.src;
-                    if (originalSrc) {
-                        iframe.src = '';
-                        setTimeout(() => {
-                            iframe.src = originalSrc;
-                        }, 100);
-                    }
-                }
-            }
-        }
-
         function toggleTheme(themeName) {
             const container = document.querySelector(`[data-theme="${themeName}"]`);
             const isExpanded = container.classList.contains('expanded');
-            
-            // Close any expanded videos when toggling theme
-            document.querySelectorAll('.video-item.expanded').forEach(item => {
-                closeVideo(item);
-            });
             
             // If expanding a new theme, pause all other videos
             if (!isExpanded) {
