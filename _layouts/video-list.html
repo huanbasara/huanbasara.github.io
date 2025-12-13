@@ -99,24 +99,25 @@
         }
 
         .video-card {
-            flex: 0 0 300px;
+            flex: 0 0 280px;
             background: var(--card-bg);
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
+            margin-bottom: 10px;
         }
 
         .video-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(233, 69, 96, 0.3);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 15px 35px rgba(233, 69, 96, 0.3);
         }
 
         .video-thumbnail {
             width: 100%;
-            height: 200px;
+            height: 160px;
             background: linear-gradient(45deg, var(--accent-color), #ff8a80);
             display: flex;
             align-items: center;
@@ -150,30 +151,30 @@
         }
 
         .video-info {
-            padding: 20px;
+            padding: 15px;
         }
 
         .video-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: var(--text-color);
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
         .video-description {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            line-height: 1.5;
-            margin-bottom: 15px;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            line-height: 1.4;
+            margin-bottom: 12px;
         }
 
         .video-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.8rem;
-            opacity: 0.7;
+            font-size: 0.75rem;
+            opacity: 0.6;
         }
 
         /* Modal Styles */
@@ -278,34 +279,60 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+            }
+            
+            .header {
+                padding: 40px 15px 30px;
             }
             
             .video-card {
-                flex: 0 0 280px;
+                flex: 0 0 260px;
             }
             
             .modal-content {
                 width: 95%;
-                margin: 10% auto;
+                margin: 5% auto;
             }
             
             .video-embed {
-                height: 300px;
+                height: 280px;
+            }
+            
+            .video-carousel-container {
+                padding: 15px;
             }
         }
 
         @media (max-width: 480px) {
             .header h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
             }
             
             .video-card {
-                flex: 0 0 250px;
+                flex: 0 0 240px;
+            }
+            
+            .video-thumbnail {
+                height: 140px;
+            }
+            
+            .video-info {
+                padding: 12px;
             }
             
             .video-embed {
-                height: 250px;
+                height: 220px;
+            }
+            
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -353,13 +380,101 @@
         // Video data
         const videos = [
             {
-                title: "🎥 Sample Video",
-                description: "This is a sample video description. Replace with your actual video content.",
-                thumbnail: "https://via.placeholder.com/300x200/e94560/ffffff?text=Video+1",
-                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1223001243012774&show_text=false&width=560&height=315",
+                title: "🎬 Video 1",
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1951315608765122&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 2", 
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1380111556851828&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 3",
+                description: "Facebook Reel Video", 
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1452597756024803&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 4",
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/4005476426380388&show_text=false&width=560&height=315", 
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 5",
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/839123248835626&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 6",
+                description: "Facebook Reel Video", 
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/2039852640135060&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 7",
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/25152873077703813&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 8",
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/804624862568386&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 9", 
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/4136076326657392&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 10",
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1250020957160818&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 11",
+                description: "Facebook Reel Video", 
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/2313714009059874&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 12",
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1557093151983134&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 13",
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1804991320139899&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 14",
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1859294578334594&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 15",
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1100705848803999&show_text=false&width=560&height=315",
+                source: "Facebook"
+            },
+            {
+                title: "🎬 Video 16", 
+                description: "Facebook Reel Video",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/770340758807213&show_text=false&width=560&height=315",
                 source: "Facebook"
             }
-            // Add more videos here
         ];
 
         function initVideoCarousel() {
@@ -376,10 +491,9 @@
                     </div>
                     <div class="video-info">
                         <div class="video-title">${video.title}</div>
-                        <div class="video-description">${video.description}</div>
                         <div class="video-meta">
-                            <span><i class="fas fa-video"></i> ${video.source}</span>
-                            <span><i class="fas fa-eye"></i> Watch</span>
+                            <span><i class="fab fa-facebook"></i> ${video.source}</span>
+                            <span><i class="fas fa-play-circle"></i> Tap to Play</span>
                         </div>
                     </div>
                 `;
