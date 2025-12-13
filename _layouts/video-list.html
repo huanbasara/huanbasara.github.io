@@ -241,37 +241,49 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // Function to extract video ID from YouTube URL
+        function extractVideoId(url) {
+            // Handle YouTube Shorts: https://www.youtube.com/shorts/VIDEO_ID
+            if (url.includes('/shorts/')) {
+                return url.split('/shorts/')[1].split('?')[0];
+            }
+            // Handle regular YouTube: https://www.youtube.com/watch?v=VIDEO_ID
+            if (url.includes('watch?v=')) {
+                return url.split('watch?v=')[1].split('&')[0];
+            }
+            // Handle youtu.be: https://youtu.be/VIDEO_ID
+            if (url.includes('youtu.be/')) {
+                return url.split('youtu.be/')[1].split('?')[0];
+            }
+            return null;
+        }
+
         // Video data organized by theme
         const videoThemes = {
             "Armbar": [
                 {
                     title: "Armbar Technique",
-                    url: "https://www.youtube.com/shorts/RjoJPRTzt7o",
-                    videoId: "RjoJPRTzt7o"
+                    url: "https://www.youtube.com/shorts/RjoJPRTzt7o"
                 },
                 {
                     title: "Armbar Technique",
-                    url: "https://www.youtube.com/shorts/xfq_k59aPA0",
-                    videoId: "xfq_k59aPA0"
+                    url: "https://www.youtube.com/shorts/xfq_k59aPA0"
                 }
             ],
             "Lasso": [
                 {
                     title: "Lasso Guard",
-                    url: "https://www.youtube.com/shorts/xODNBjbWzt0",
-                    videoId: "xODNBjbWzt0"
+                    url: "https://www.youtube.com/shorts/xODNBjbWzt0"
                 },
                 {
                     title: "Lasso Guard",
-                    url: "https://www.youtube.com/shorts/0CUPVUnUdTE",
-                    videoId: "0CUPVUnUdTE"
+                    url: "https://www.youtube.com/shorts/0CUPVUnUdTE"
                 }
             ],
             "Close Guard Sweep": [
                 {
                     title: "Close Guard Sweep",
-                    url: "https://www.youtube.com/shorts/JF9I2Tft68I",
-                    videoId: "JF9I2Tft68I"
+                    url: "https://www.youtube.com/shorts/JF9I2Tft68I"
                 }
             ]
         };
@@ -316,7 +328,8 @@
                     const embedWrapper = document.createElement('div');
                     embedWrapper.className = 'video-embed-wrapper';
                     
-                    const embedUrl = `https://www.youtube.com/embed/${video.videoId}?rel=0&modestbranding=1&controls=1&showinfo=0&fs=1&playsinline=1`;
+                    const videoId = extractVideoId(video.url);
+                    const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&controls=1&showinfo=0&fs=1&playsinline=1`;
                     
                     const iframe = document.createElement('iframe');
                     iframe.src = embedUrl;
