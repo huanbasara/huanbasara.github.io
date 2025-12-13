@@ -125,11 +125,75 @@
             overflow: hidden;
             transition: all 0.3s ease;
             aspect-ratio: 9/16; /* Maintain vertical video aspect ratio */
+            position: relative;
         }
 
         .video-item:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3);
+        }
+
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(74, 144, 226, 0.9);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .video-item:hover .fullscreen-btn {
+            opacity: 1;
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(74, 144, 226, 1);
+            transform: scale(1.1);
+        }
+
+        .video-item.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            border-radius: 0;
+            aspect-ratio: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px 20px;
+        }
+
+        .video-item.fullscreen .video-embed-wrapper {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            padding-bottom: 177.78%;
+        }
+
+        .video-item.fullscreen .fullscreen-btn {
+            opacity: 1;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(233, 69, 96, 0.9);
+        }
+
+        .video-item.fullscreen .fullscreen-btn i::before {
+            content: "\f066"; /* compress icon */
         }
 
         .video-embed-wrapper {
