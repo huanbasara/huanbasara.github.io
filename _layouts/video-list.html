@@ -143,7 +143,8 @@
             border-radius: 10px;
             overflow: hidden;
             transition: all 0.3s ease;
-            aspect-ratio: 9/16; /* Maintain vertical video aspect ratio */
+            display: flex;
+            flex-direction: column;
         }
 
         .video-item:hover {
@@ -153,11 +154,13 @@
 
         .video-title {
             color: white;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             padding: 8px 10px;
             text-align: center;
             line-height: 1.4;
             word-wrap: break-word;
+            background: rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
         }
 
         .video-embed-wrapper {
@@ -167,6 +170,7 @@
             height: 0;
             overflow: hidden;
             background: #000;
+            flex-shrink: 0;
         }
 
         .video-embed-wrapper iframe {
