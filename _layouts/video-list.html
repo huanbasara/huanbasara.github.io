@@ -40,6 +40,16 @@
             padding: 40px 20px 30px;
         }
 
+        .cover-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 20px;
+            margin: 0 auto 30px;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
         .header h1 {
             font-size: 3rem;
             font-weight: 700;
@@ -194,6 +204,9 @@
 </head>
 <body>
     <div class="header">
+        {% if page.thumbnail %}
+        <img src="{{ page.thumbnail | prepend: site.baseurl }}" alt="BJJ Reels Cover" class="cover-image">
+        {% endif %}
         <h1>🎬 BJJ Reels</h1>
     </div>
 
