@@ -47,6 +47,12 @@ Live demo is available [here](https://byanko55.github.io)
 * Visitor Counter (*goatcounter*)
 
 
+## Site Pages
+
+* [BJJ Reels](https://huanbasara.github.io/bjj-videos.html) - Brazilian Jiu-Jitsu video collection organized by techniques
+* [Movie Watchlist](https://huanbasara.github.io/movie-watchlist.html) - Movie and TV series recommendations
+
+
 ## Installation
 
 There are two ways to setup this theme:
