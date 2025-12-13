@@ -271,7 +271,7 @@
             align-items: center;
             justify-content: center;
             background: #000;
-            min-height: 600px;
+            min-height: 400px;
         }
 
         .video-embed {
@@ -332,12 +332,23 @@
             
             .modal-content {
                 width: 98%;
-                max-height: 85vh;
-                margin: 5% auto;
+                max-height: 95vh;
+                margin: 2% auto;
+                overflow-y: auto;
             }
             
             .video-embed {
+                min-height: 250px;
+            }
+            
+            .modal-body {
                 min-height: 300px;
+                padding: 10px;
+            }
+            
+            #videoContainer {
+                height: auto !important;
+                min-height: 250px;
             }
             
             .video-carousel-container {
@@ -366,8 +377,25 @@
                 padding: 12px;
             }
             
+            .modal-content {
+                width: 95%;
+                max-height: 90vh;
+                margin: 5% auto;
+                overflow-y: auto;
+            }
+            
+            .modal-body {
+                min-height: 200px;
+                padding: 5px;
+            }
+            
             .video-embed {
-                min-height: 250px;
+                min-height: 200px;
+            }
+            
+            #videoContainer {
+                height: auto !important;
+                min-height: 200px;
             }
             
             .nav-arrow {
