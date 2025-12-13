@@ -604,6 +604,9 @@
                     </div>
                     
                     <div style="margin-top: 20px; text-align: center;">
+                        <div id="methodIndicator" style="color: #fff; margin-bottom: 15px; font-size: 14px; opacity: 0.8;">
+                            📺 Current Method: Facebook Plugin API
+                        </div>
                         <button onclick="switchEmbedMethod()" style="color: #4ecdc4; background: transparent; border: 1px solid #4ecdc4; border-radius: 5px; padding: 10px 20px; margin-right: 10px; cursor: pointer;">
                             <i class="fas fa-sync"></i> Try Alternative Method
                         </button>
@@ -630,13 +633,16 @@
         function switchEmbedMethod() {
             const fbPlugin = document.getElementById('fbPlugin');
             const directFrame = document.getElementById('directFrame');
+            const indicator = document.getElementById('methodIndicator');
             
             if (fbPlugin.style.display !== 'none') {
                 fbPlugin.style.display = 'none';
                 directFrame.style.display = 'block';
+                indicator.innerHTML = '🔗 Current Method: Direct iframe (Native Link)';
             } else {
                 fbPlugin.style.display = 'block';
                 directFrame.style.display = 'none';
+                indicator.innerHTML = '📺 Current Method: Facebook Plugin API';
             }
         }
 
