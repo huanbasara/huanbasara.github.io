@@ -39,102 +39,89 @@
             color: var(--text-color);
             min-height: 100vh;
             overflow-x: hidden;
+            padding: 20px;
         }
 
-        .header {
-            text-align: center;
-            padding: 40px 20px 30px;
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            font-weight: 700;
+        .theme-container {
             margin-bottom: 15px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 4s ease-in-out infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.8;
-        }
-
-        /* Theme Section Styles */
-        .theme-section {
-            margin-bottom: 40px;
-            padding: 0 20px;
-        }
-
-        .theme-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--text-color);
-            padding-left: 10px;
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .video-scroll-container {
-            position: relative;
-            width: 100%;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent-color) var(--card-bg);
-            padding: 10px 0;
-        }
-
-        .video-scroll-container::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .video-scroll-container::-webkit-scrollbar-track {
-            background: var(--card-bg);
-            border-radius: 4px;
-        }
-
-        .video-scroll-container::-webkit-scrollbar-thumb {
-            background: var(--accent-color);
-            border-radius: 4px;
-        }
-
-        .video-scroll-wrapper {
-            display: flex;
-            gap: 20px;
-            padding: 0 10px;
-        }
-
-        .video-item {
-            flex: 0 0 320px;
             background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .theme-container.expanded {
+            box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+        }
+
+        .theme-tag {
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(45deg, var(--accent-color), #ff8a80);
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .theme-tag:hover {
+            background: linear-gradient(45deg, #ff8a80, var(--accent-color));
+        }
+
+        .theme-tag h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .theme-tag .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-container.expanded .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .theme-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .theme-container.expanded .theme-content {
+            max-height: 5000px;
+        }
+
+        .video-list {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .video-item {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
 
         .video-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(233, 69, 96, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         }
 
         .video-embed-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 177.78%; /* 9:16 aspect ratio for YouTube Shorts (vertical) */
+            padding-bottom: 177.78%; /* 9:16 aspect ratio for YouTube Shorts */
             height: 0;
             overflow: hidden;
             background: #000;
-            border-radius: 15px 15px 0 0;
         }
 
         .video-embed-wrapper iframe {
@@ -146,63 +133,67 @@
             border: none;
         }
 
+        /* Collapsed state - thumbnail preview */
+        .theme-container:not(.expanded) .video-list {
+            padding: 10px 15px;
+            flex-direction: row;
+            overflow-x: auto;
+            gap: 10px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .theme-container:not(.expanded) .video-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .theme-container:not(.expanded) .video-item {
+            flex: 0 0 80px;
+            width: 80px;
+            border-radius: 8px;
+        }
+
+        .theme-container:not(.expanded) .video-embed-wrapper {
+            padding-bottom: 177.78%;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.2rem;
+            body {
+                padding: 15px;
             }
             
-            .header {
-                padding: 30px 15px 20px;
+            .theme-tag {
+                padding: 12px 15px;
             }
             
-            .theme-section {
-                margin-bottom: 30px;
-                padding: 0 15px;
+            .theme-tag h2 {
+                font-size: 1.3rem;
             }
             
-            .theme-title {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
-            }
-            
-            .video-item {
-                flex: 0 0 280px;
-            }
-            
-            .video-scroll-wrapper {
+            .video-list {
+                padding: 15px;
                 gap: 15px;
             }
         }
 
         @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.8rem;
+            body {
+                padding: 10px;
             }
             
-            .subtitle {
-                font-size: 0.95rem;
+            .theme-tag h2 {
+                font-size: 1.1rem;
             }
             
-            .theme-title {
-                font-size: 1.3rem;
-            }
-            
-            .video-item {
-                flex: 0 0 250px;
-            }
-            
-            .video-scroll-wrapper {
-                gap: 12px;
+            .theme-container:not(.expanded) .video-item {
+                flex: 0 0 60px;
+                width: 60px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🎬 BJJ Reels</h1>
-    </div>
-
     <div id="videoContainer">
         <!-- Video sections will be populated by JavaScript -->
     </div>
@@ -252,22 +243,31 @@
             Object.keys(videoThemes).forEach(themeName => {
                 const videos = videoThemes[themeName];
                 
-                // Create theme section
-                const themeSection = document.createElement('div');
-                themeSection.className = 'theme-section';
+                // Create theme container
+                const themeContainer = document.createElement('div');
+                themeContainer.className = 'theme-container';
+                themeContainer.dataset.theme = themeName;
                 
-                // Create theme title
+                // Create theme tag (button)
+                const themeTag = document.createElement('div');
+                themeTag.className = 'theme-tag';
+                themeTag.onclick = () => toggleTheme(themeName);
+                
                 const themeTitle = document.createElement('h2');
-                themeTitle.className = 'theme-title';
                 themeTitle.textContent = themeName;
                 
-                // Create scroll container
-                const scrollContainer = document.createElement('div');
-                scrollContainer.className = 'video-scroll-container';
+                const toggleIcon = document.createElement('i');
+                toggleIcon.className = 'fas fa-chevron-down toggle-icon';
                 
-                // Create scroll wrapper
-                const scrollWrapper = document.createElement('div');
-                scrollWrapper.className = 'video-scroll-wrapper';
+                themeTag.appendChild(themeTitle);
+                themeTag.appendChild(toggleIcon);
+                
+                // Create theme content (video list)
+                const themeContent = document.createElement('div');
+                themeContent.className = 'theme-content';
+                
+                const videoList = document.createElement('div');
+                videoList.className = 'video-list';
                 
                 // Add videos
                 videos.forEach(video => {
@@ -277,8 +277,6 @@
                     const embedWrapper = document.createElement('div');
                     embedWrapper.className = 'video-embed-wrapper';
                     
-                    // Create YouTube embed iframe
-                    // For YouTube Shorts, we use the embed URL format
                     const embedUrl = `https://www.youtube.com/embed/${video.videoId}?rel=0&modestbranding=1`;
                     
                     const iframe = document.createElement('iframe');
@@ -289,14 +287,33 @@
                     
                     embedWrapper.appendChild(iframe);
                     videoItem.appendChild(embedWrapper);
-                    scrollWrapper.appendChild(videoItem);
+                    videoList.appendChild(videoItem);
                 });
                 
-                scrollContainer.appendChild(scrollWrapper);
-                themeSection.appendChild(themeTitle);
-                themeSection.appendChild(scrollContainer);
-                container.appendChild(themeSection);
+                themeContent.appendChild(videoList);
+                themeContainer.appendChild(themeTag);
+                themeContainer.appendChild(themeContent);
+                container.appendChild(themeContainer);
             });
+        }
+
+        function toggleTheme(themeName) {
+            const container = document.querySelector(`[data-theme="${themeName}"]`);
+            const isExpanded = container.classList.contains('expanded');
+            
+            // Close all other themes
+            document.querySelectorAll('.theme-container').forEach(el => {
+                if (el !== container) {
+                    el.classList.remove('expanded');
+                }
+            });
+            
+            // Toggle current theme
+            if (isExpanded) {
+                container.classList.remove('expanded');
+            } else {
+                container.classList.add('expanded');
+            }
         }
 
         // Initialize when page loads
