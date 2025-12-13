@@ -151,6 +151,15 @@
             box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3);
         }
 
+        .video-title {
+            color: white;
+            font-size: 0.85rem;
+            padding: 8px 10px;
+            text-align: center;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
         .video-embed-wrapper {
             position: relative;
             width: 100%;
@@ -179,6 +188,10 @@
             flex: 0 0 80px;
             width: 80px;
             border-radius: 8px;
+        }
+
+        .theme-container:not(.expanded) .video-title {
+            display: none;
         }
 
         /* Responsive Design */
@@ -262,32 +275,46 @@
         const videoThemes = {
             "Armbar": [
                 {
-                    title: "Armbar Technique",
+                    title: "From Spider",
                     url: "https://www.youtube.com/shorts/RjoJPRTzt7o"
                 },
                 {
-                    title: "Armbar Technique",
+                    title: "Scythe Armbar",
                     url: "https://www.youtube.com/shorts/xfq_k59aPA0"
                 }
             ],
             "Lasso": [
                 {
-                    title: "Lasso Guard",
+                    title: "Sweep & Armbar",
                     url: "https://www.youtube.com/shorts/xODNBjbWzt0"
                 },
                 {
-                    title: "Lasso Guard",
+                    title: "To Armbar",
                     url: "https://www.youtube.com/shorts/0CUPVUnUdTE"
                 }
             ],
             "Close Guard Sweep": [
                 {
-                    title: "Close Guard Sweep",
+                    title: "Flower Sweep & Armbar",
                     url: "https://www.youtube.com/shorts/JF9I2Tft68I"
                 },
                 {
                     title: "Scissors Sweep",
                     url: "https://www.youtube.com/shorts/ZoTzKzSwCj4"
+                }
+            ],
+            "Berimbolo Entries": [
+                {
+                    title: "Basic Entry",
+                    url: "https://www.youtube.com/shorts/qsAzjm7u1EU"
+                },
+                {
+                    title: "Back Step & Twister Hook",
+                    url: "https://www.youtube.com/shorts/y-VzsbGTgpo"
+                },
+                {
+                    title: "From Headquarters",
+                    url: "https://www.youtube.com/shorts/NDf5kba5AaQ"
                 }
             ]
         };
@@ -343,6 +370,13 @@
                     
                     embedWrapper.appendChild(iframe);
                     videoItem.appendChild(embedWrapper);
+                    
+                    // Add title below video
+                    const titleElement = document.createElement('div');
+                    titleElement.className = 'video-title';
+                    titleElement.textContent = video.title;
+                    videoItem.appendChild(titleElement);
+                    
                     videoList.appendChild(videoItem);
                 });
                 
