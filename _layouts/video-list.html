@@ -247,16 +247,23 @@
 
         .close-btn {
             position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.5rem;
+            top: 10px;
+            right: 15px;
+            font-size: 1.8rem;
             cursor: pointer;
             color: white;
-            background: none;
+            background: rgba(0, 0, 0, 0.3);
             border: none;
-            padding: 5px;
+            padding: 8px 12px;
             border-radius: 50%;
             transition: all 0.3s ease;
+            z-index: 1001;
+            line-height: 1;
+            min-width: 40px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .close-btn:hover {
@@ -331,9 +338,36 @@
             }
             
             .modal-content {
-                width: 98%;
-                max-height: 95vh;
-                margin: 2% auto;
+                width: 100%;
+                height: 100vh;
+                max-height: 100vh;
+                margin: 0;
+                border-radius: 0;
+                overflow-y: auto;
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
+            
+            .modal-header {
+                padding: 15px 50px 15px 20px;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+            
+            .close-btn {
+                top: 12px;
+                right: 12px;
+                font-size: 2rem;
+                min-width: 44px;
+                min-height: 44px;
+            }
+            
+            .modal-body {
+                min-height: auto;
+                padding: 10px;
+                flex: 1;
                 overflow-y: auto;
             }
             
@@ -341,14 +375,26 @@
                 min-height: 250px;
             }
             
-            .modal-body {
-                min-height: 300px;
-                padding: 10px;
-            }
-            
             #videoContainer {
+                width: 100% !important;
+                max-width: 100% !important;
                 height: auto !important;
                 min-height: 250px;
+                margin: 0;
+                padding: 0 10px !important;
+            }
+            
+            #videoContainer iframe {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                min-height: 250px;
+                aspect-ratio: 16/9;
+            }
+            
+            #videoWrapper {
+                padding: 10px 0;
+                justify-content: flex-start !important;
             }
             
             .video-carousel-container {
@@ -378,14 +424,27 @@
             }
             
             .modal-content {
-                width: 95%;
-                max-height: 90vh;
-                margin: 5% auto;
-                overflow-y: auto;
+                width: 100%;
+                height: 100vh;
+                max-height: 100vh;
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .modal-header {
+                padding: 12px 50px 12px 15px;
+            }
+            
+            .close-btn {
+                top: 10px;
+                right: 10px;
+                font-size: 2rem;
+                min-width: 44px;
+                min-height: 44px;
             }
             
             .modal-body {
-                min-height: 200px;
+                min-height: auto;
                 padding: 5px;
             }
             
@@ -394,8 +453,29 @@
             }
             
             #videoContainer {
+                width: 100% !important;
+                max-width: 100% !important;
                 height: auto !important;
                 min-height: 200px;
+                padding: 0 5px !important;
+            }
+            
+            #videoContainer iframe {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                min-height: 200px;
+                aspect-ratio: 16/9;
+            }
+            
+            #videoWrapper {
+                padding: 5px 0;
+                justify-content: flex-start !important;
+            }
+            
+            #videoWrapper iframe {
+                width: 100% !important;
+                max-width: 100% !important;
             }
             
             .nav-arrow {
@@ -602,13 +682,13 @@
             const decodedUrl = decodeURIComponent(facebookUrl);
             
             modalVideo.innerHTML = `
-                <div id="videoWrapper" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000;">
-                    <div id="videoContainer" style="position: relative; width: 100%; max-width: 800px; margin-bottom: 20px;">
+                <div id="videoWrapper" style="width: 100%; min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; background: #000; padding-top: 10px;">
+                    <div id="videoContainer" style="position: relative; width: 100%; max-width: 800px; margin-bottom: 20px; padding: 0 10px;">
                         <iframe id="fbVideoFrame" 
                                 src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(decodedUrl)}&width=800&height=600&show_text=false" 
-                                width="800" 
+                                width="100%" 
                                 height="600" 
-                                style="border:none;overflow:hidden;max-width:100%;max-height:80vh;" 
+                                style="border:none;overflow:hidden;max-width:100%;width:100%;aspect-ratio:16/9;" 
                                 scrolling="no" 
                                 frameborder="0" 
                                 allowfullscreen="true" 
@@ -616,7 +696,7 @@
                         </iframe>
                     </div>
                     
-                    <div style="text-align: center; padding: 0 20px;">
+                    <div style="text-align: center; padding: 0 20px 20px; width: 100%;">
                         <p style="color: #fff; margin-bottom: 15px; font-size: 14px; opacity: 0.8;">
                             If video doesn't load above, click below to watch on Facebook
                         </p>
